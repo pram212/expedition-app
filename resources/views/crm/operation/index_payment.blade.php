@@ -65,14 +65,9 @@
                 [ 10, 25, 50, -1 ],
                 [ '10 rows', '25 rows', '50 rows', 'Show all' ]
             ],
-            select: { style: 'multi' },
+            select: true,
             dom: 'Bfrtip',
             buttons: [
-                // 'copy', 
-                // 'csv', 
-                // 'excel', 
-                // 'pdf', 
-                // 'print', 
                 'colvis', 
                 'pageLength' 
             ],
@@ -92,12 +87,23 @@
             ],
         });
 
-
-        // table.on('click', 'td', function () {
-        //     var tr = $(this).closest('tr');
-        //     var data = table.row(tr).data();
-        //     console.log(data)
-        // });
+        table.on('click', 'button', function () {
+            var tr = $(this).closest('tr');
+            var data = table.row(tr).data();
+            axios.put('/crm/operation/payment/' + data.id)
+                .then((res) => {
+                    Swal.fire({
+                        position: 'top-end',
+                        toast: true,
+                        timer: 4000,
+                        timerProgressBar: true,
+                        showConfirmButton: false,
+                        icon: 'success',
+                        title: res.data,
+                    })
+                    table.ajax.reload();
+                })
+        });
 
     </script>
 @endsection

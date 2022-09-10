@@ -6,6 +6,7 @@ use App\Http\Controllers\CRM\OrderRegisterController;
 use App\Http\Controllers\CRM\PaymentController;
 use App\Http\Controllers\CRM\RegisterKtpController;
 use App\Http\Controllers\CRM\ShipmentController;
+use App\Http\Controllers\Reporting\ReportController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -37,12 +38,18 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::group(['prefix' => '/crm', 'as' => 'crm.', 'middleware' => 'auth'], function () {
     Route::resource('/order', OrderController::class );
+    Route::post('/order/delete/multiple', [OrderController::class, 'multiDestroy']);
 
     Route::group(['prefix' => '/operation', 'as' => 'operation.'], function () {
         Route::resource('/payment', PaymentController::class );
         Route::resource('/shipment', ShipmentController::class );
+        Route::post('/shipment/multiupdate', [ShipmentController::class, 'multiUpdate']);
     });
 
+});
+
+Route::group(['prefix' => '/reporting', 'as' => 'reporting.', 'middleware' => 'auth'], function () {
+    Route::resource('/', ReportController::class);
 });
 
 Route::group(['prefix' => '/datatable', 'as' => 'datatable.', 'middleware' => 'auth'], function () {

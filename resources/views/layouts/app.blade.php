@@ -15,6 +15,8 @@
     <link rel="stylesheet" href="{{ asset('adminlte/plugins/fontawesome-free/css/all.min.css') }}">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('adminlte/dist/css/adminlte.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('adminlte/plugins/sweetalert2/sweetalert2.min.css')}}">
+    
     @yield('css')
 </head>
 
@@ -74,12 +76,44 @@
 
     <!-- REQUIRED SCRIPTS -->
 
+    
     <!-- jQuery -->
     <script src="{{ asset('adminlte/plugins/jquery/jquery.min.js') }}"></script>
     <!-- Bootstrap 4 -->
     <script src="{{ asset('adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <!-- AdminLTE App -->
     <script src="{{ asset('adminlte/dist/js/adminlte.min.js') }}"></script>
+    <script src="{{ asset('adminlte/plugins/sweetalert2/sweetalert2.min.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    @if (Session::has('success'))
+        <script>
+            Swal.fire({
+                position: 'top-end',
+                toast: true,
+                timer: 4000,
+                timerProgressBar: true,
+                showConfirmButton: false,
+                icon: 'success',
+                title: "{{Session::get('success')}}",
+            })
+        </script>       
+    @endif
+
+    @if ($errors->any())
+        <script>
+            Swal.fire({
+                position: 'top-end',
+                toast: true,
+                timer: 4000,
+                timerProgressBar: true,
+                showConfirmButton: false,
+                icon: 'error',
+                title: "Opps terjadi kesalahan!",
+            })
+        </script> 
+    @endif
+
     @yield('script')
 </body>
 @endauth

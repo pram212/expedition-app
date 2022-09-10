@@ -3,7 +3,7 @@
 @section('header', 'Manajemen Konsumen')
 
 @section('css')
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="{{asset('datatables/jquery.dataTables.min.css')}}">
     <link rel="stylesheet" href="{{asset('datatables/buttons.dataTables.min.css')}}">
 @endsection
 
@@ -13,13 +13,13 @@
     <div class="card-body">
         <div class="row">
             <div class="col-12">
-                <button class="btn btn-success m-2">Tambah Konsumen</button>
-                <button class="btn btn-danger m-2">Hapus</button>
+                <a href="{{url('/crm/order/create')}}" class="btn btn-success m-2">Tambah Konsumen</a>
+                <button class="btn btn-danger m-2" type="button" id="btn-multi-delete">Hapus</button>
             </div>
         </div>
     </div>
 </div>
-<div class="card">
+<div class="card">   
     <div class="card-header bg-secondary">DAFTAR KONSUMEN</div>
     <div class="card-body">
         <table class="table table-sm" id="orders-table">
@@ -47,7 +47,7 @@
 @endsection
 
 @section('script')
-    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script src="{{asset('datatables/jquery.dataTables.min.js')}}"></script>
     <script src="{{asset('datatables/dataTables.select.min.js')}}"></script>
     <script src="{{asset('datatables/dataTables.buttons.min.js')}}"></script>
     <script src="{{asset('datatables/buttons.html5.min.js')}}"></script>
@@ -55,8 +55,7 @@
     <script src="{{asset('datatables/jszip.min.js')}}"></script>
     <script src="{{asset('datatables/pdfmake.min.js')}}"></script>
     <script src="{{asset('datatables/vfs_fonts.js')}}"></script> 
-    <script src="{{asset('datatables/buttons.colVis.min.js')}}"></script> 
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="{{asset('datatables/buttons.colVis.min.js')}}"></script>
 
     <script>
         // generate datatable untuk tabel master aruskas
@@ -89,12 +88,59 @@
             ],
         });
 
+        var idsOrder = [];
 
-        // table.on('click', 'td', function () {
-        //     var tr = $(this).closest('tr');
-        //     var data = table.row(tr).data();
-        //     console.log(data)
-        // });
+        table.on('click', 'tr', function () {
+            var tr = $(this).closest('tr');
+            var data = table.row(tr).data();
+            if ( table.row( this, { selected: true } ).any() ) {
+                var carIndex = idsOrder.indexOf(data.id);
+                idsOrder.splice(carIndex, 1);
+            }
+            else {
+                idsOrder.push(data.id)
+            }
+            
+        });
+
+        $("#btn-multi-delete").click(function (e) { 
+            e.preventDefault();
+            if (idsOrder == 0) {
+                Swal.fire({
+                    position: 'top-end',
+                    toast: true,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    showConfirmButton: false,
+                    icon: 'error',
+                    title: "Gagal! Pilih minimal 1 data",
+                })
+            } else {
+                Swal.fire({  
+                    title: 'Apakah anda yakin?',  
+                    showDenyButton: false,  
+                    showCancelButton: true,  
+                    confirmButtonText: `Ya, Hapus`,  
+                    }).then((result) => {  
+                        if (result.isConfirmed) {    
+                            axios.post('/crm/order/delete/multiple', {id : idsOrder})
+                                .then((res) => {
+                                    Swal.fire({
+                                        position: 'top-end',
+                                        toast: true,
+                                        timer: 4000,
+                                        timerProgressBar: true,
+                                        showConfirmButton: false,
+                                        icon: 'success',
+                                        title: res.data,
+                                    })
+                                    table.ajax.reload();
+                                })
+                        }
+                    });
+            }
+            
+        });
 
     </script>
 @endsection

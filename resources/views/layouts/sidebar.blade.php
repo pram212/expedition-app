@@ -46,8 +46,8 @@
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link ">
+                <li class="nav-item @if(request()->routeIs('reporting.*')) menu-open @endif">
+                    <a href="#" class="nav-link @if(request()->routeIs('reporting.*')) active @endif">
                         <i class="nav-icon fa fa-book" aria-hidden="true"></i>
                         <p>
                             Pelaporan
@@ -56,7 +56,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ url('/reporting') }}" class="nav-link @if(request()->routeIs('reporting.*')) active @endif">
                                 <i class="nav-icon fa fa-share" aria-hidden="true"></i>
                                 <p>Buat Laporan</p>
                             </a>

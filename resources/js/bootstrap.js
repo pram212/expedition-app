@@ -1,5 +1,6 @@
 window._ = require('lodash');
 
+window.axios = require('axios');
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
  * for JavaScript based Bootstrap features such as modals and tabs. This
@@ -12,6 +13,7 @@ try {
 
     require('bootstrap');
 } catch (e) {
+    
 }
 
 /**

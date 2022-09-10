@@ -99,10 +99,6 @@ class DatatablesController extends Controller
         $orders = Order::get();
         return DataTables::of($orders)
                     ->addIndexColumn()
-                    ->addColumn('action', function($orders) {
-                        $selectEl = "<select class='custom-select w-100 bg-light'><option selected disabled>Update</option><option value='1'>Terkirim</option><option value='2'>Dikemas</option><option value='3'>Dibatalkan</option></select>";
-                        return $selectEl;
-                    })
                     ->editColumn('category_id', function($orders) {
                         return  strtoupper(@$orders->category->name) ;
                     })
@@ -135,7 +131,7 @@ class DatatablesController extends Controller
                     ->editColumn('created_at', function($orders) {
                         return  date('d/m/Y', strtotime(@$orders->created_at)) ;
                     })
-                    ->rawColumns(['action', 'payment_statuses_id', 'shippment_statuses_id'])
+                    ->rawColumns(['payment_statuses_id', 'shippment_statuses_id'])
                     ->make(true);
     }
 }

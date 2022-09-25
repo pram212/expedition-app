@@ -60,6 +60,8 @@ Route::group(['prefix' => '/invoice', 'as' => 'invoice.', 'middleware' => 'auth'
 });
 
 Route::group(['prefix' => '/datatable', 'as' => 'datatable.', 'middleware' => 'auth'], function () {
+
+    
     Route::get('/getorder', [DatatablesController::class, 'getOrder'])->name('getorder');
     Route::get('/getorderpayment', [DatatablesController::class, 'getOrderPayment'])->name('getorderpayment');
     Route::get('/getordershipment', [DatatablesController::class, 'getOrderShipment'])->name('getordershipment');

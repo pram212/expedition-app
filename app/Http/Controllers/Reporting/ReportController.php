@@ -48,6 +48,12 @@ class ReportController extends Controller
             if ($request->village_id) {
                 $orders = $orders->where('village_id', $request->village_id);
             }
+            if ($request->payment_statuses_id) {
+                $orders = $orders->where('payment_statuses_id', $request->payment_statuses_id);
+            }
+            if ($request->shippment_statuses_id) {
+                $orders = $orders->where('shippment_statuses_id', $request->shippment_statuses_id);
+            }
 
             $orders = $orders->with('category', 'paymentStatus', 'shippmentStatus', 'district', 'village')->get();
 

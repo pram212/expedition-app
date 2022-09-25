@@ -17,7 +17,7 @@
 
 @section('content')
     <div class="card">
-        <div class="card-header bg-secondary">Filter Panel</div>
+        <div class="card-header bg-secondary">FILTER PANEL</div>
         <div class="card-body">
             <form action="">
                 @csrf
@@ -175,7 +175,7 @@
                 responsive: true,
                 paging: false,
                 dom: 'Bfrtip',
-                buttons: ['copy', 'csv', 'excel', 'pdf', 'print'],
+                buttons: ['copy', 'csv', 'excel', 'print'],
             });
 
         });

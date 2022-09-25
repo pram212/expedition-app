@@ -6,6 +6,7 @@ use App\Http\Controllers\CRM\OrderRegisterController;
 use App\Http\Controllers\CRM\PaymentController;
 use App\Http\Controllers\CRM\RegisterKtpController;
 use App\Http\Controllers\CRM\ShipmentController;
+use App\Http\Controllers\Reporting\InvoiceController;
 use App\Http\Controllers\Reporting\ReportController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -52,10 +53,17 @@ Route::group(['prefix' => '/reporting', 'as' => 'reporting.', 'middleware' => 'a
     Route::resource('/', ReportController::class);
 });
 
+Route::group(['prefix' => '/invoice', 'as' => 'invoice.', 'middleware' => 'auth'], function () {
+    Route::resource('/', InvoiceController::class);
+    Route::get('/print/{id}', [InvoiceController::class, 'printInvoice'])->name('invoice.print');
+    Route::get('/multiple/print', [InvoiceController::class, 'printInvoiceMultiple'])->name('invoice.prints.multiple');
+});
+
 Route::group(['prefix' => '/datatable', 'as' => 'datatable.', 'middleware' => 'auth'], function () {
     Route::get('/getorder', [DatatablesController::class, 'getOrder'])->name('getorder');
     Route::get('/getorderpayment', [DatatablesController::class, 'getOrderPayment'])->name('getorderpayment');
     Route::get('/getordershipment', [DatatablesController::class, 'getOrderShipment'])->name('getordershipment');
+    Route::get('/getinvoiceorder', [DatatablesController::class, 'getInvoiceOrder'])->name('getinvoiceorder');
 });
     
 Route::group(['prefix' => '/pendaftaran', 'as' => 'pendaftaran.'], function () {

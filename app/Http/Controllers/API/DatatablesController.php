@@ -134,4 +134,36 @@ class DatatablesController extends Controller
                     ->rawColumns(['payment_statuses_id', 'shippment_statuses_id'])
                     ->make(true);
     }
+
+    public function getInvoiceOrder()
+    {
+        $orders = Order::get();
+        return DataTables::of($orders)
+                    ->addIndexColumn()
+                    ->editColumn('category_id', function($orders) {
+                        return  strtoupper(@$orders->category->name) ;
+                    })
+                    ->editColumn('payment_statuses_id', function($orders) {
+                       
+                        return  ucwords(@$orders->paymentStatus->name);
+                    })
+                    ->editColumn('shippment_statuses_id', function($orders) {
+                        return ucwords(@$orders->shippmentStatus->name);
+                    })
+                    ->editColumn('district_id', function($orders) {
+                        return  @$orders->district->name ;
+                    })
+                    ->editColumn('village_id', function($orders) {
+                        return  @$orders->village->name ;
+                    })
+                    ->editColumn('created_at', function($orders) {
+                        return  date('d/m/Y', strtotime(@$orders->created_at)) ;
+                    })
+                    ->addColumn('action', function($orders) {
+                        $buttonEl = "<a href='". url('invoice/print/'. $orders->id)."' target='_blank' class='btn btn btn-info w-100' type='button'>Cetak</a>";
+                        return $buttonEl;
+                    })
+                    ->rawColumns(['action'])
+                    ->make(true);
+    }
 }

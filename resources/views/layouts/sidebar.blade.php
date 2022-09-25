@@ -46,8 +46,8 @@
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item @if(request()->routeIs('reporting.*')) menu-open @endif">
-                    <a href="#" class="nav-link @if(request()->routeIs('reporting.*')) active @endif">
+                <li class="nav-item @if( request()->routeIs('reporting.*') || request()->routeIs('invoice.*') ) menu-open @endif">
+                    <a href="#" class="nav-link @if(request()->routeIs('reporting.*')|| request()->routeIs('invoice.*')) active @endif">
                         <i class="nav-icon fa fa-book" aria-hidden="true"></i>
                         <p>
                             Pelaporan
@@ -56,13 +56,13 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{ url('/reporting') }}" class="nav-link @if(request()->routeIs('reporting.*')) active @endif">
+                            <a href="{{ url('/reporting') }}" class="nav-link @if( request()->routeIs('reporting.*') ) active @endif">
                                 <i class="nav-icon fa fa-share" aria-hidden="true"></i>
                                 <p>Buat Laporan</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ url('/invoice') }}" class="nav-link @if(request()->routeIs('invoice.*')) active @endif">
                                 <i class="nav-icon fa fa-share" aria-hidden="true"></i>
                                 <p>Cetak Struk</p>
                             </a>

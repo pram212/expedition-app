@@ -5,6 +5,7 @@
 @section('css')
     <link rel="stylesheet" href="{{asset('datatables/jquery.dataTables.min.css')}}">
     <link rel="stylesheet" href="{{asset('datatables/buttons.dataTables.min.css')}}">
+    <link rel="stylesheet" href="{{asset('datatables/responsive.dataTables.min.css')}}">
 @endsection
 
 @section('content')
@@ -48,6 +49,7 @@
 
 @section('script')
     <script src="{{asset('datatables/jquery.dataTables.min.js')}}"></script>
+    <script src="{{asset('datatables/dataTables.responsive.min.js')}}"></script>
     <script src="{{asset('datatables/dataTables.select.min.js')}}"></script>
     <script src="{{asset('datatables/dataTables.buttons.min.js')}}"></script>
     <script src="{{asset('datatables/buttons.html5.min.js')}}"></script>

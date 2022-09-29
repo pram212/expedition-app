@@ -12,6 +12,8 @@ class DatatablesController extends Controller
     public function getOrder()
     {
         $orders = Order::all();
+
+        
         return DataTables::of($orders)
                     ->addIndexColumn()
                     ->addColumn('action', function($orders) {

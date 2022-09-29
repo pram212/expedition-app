@@ -79,7 +79,7 @@
                                                 class="text-danger">*</span></label>
                                         <input type="text" name="customer_name" id="customer_name"
                                             class="form-control @error('customer_name') is-invalid @enderror"
-                                            placeholder="pisahkan dengan koma jika lebih dar satu kia anak" aria-describedby="helpId"
+                                            placeholder="pisahkan dengan koma jika lebih dar satu kia" aria-describedby="helpId"
                                             value="{{ old('customer_name') }}">
                                         @error('customer_name')
                                             <small id="helpId" class="text-danger">wajib diisi!</small>

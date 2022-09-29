@@ -24,7 +24,7 @@ class StoreOrderRequest extends FormRequest
     public function rules()
     {
         return [
-            'register_number'=> 'required',
+            // 'register_number'=> 'required',
             'category_id'=> 'required',
             'payment_statuses_id'=> 'required',
             'shippment_statuses_id'=> 'required',

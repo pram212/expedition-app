@@ -56,8 +56,7 @@ class ReportController extends Controller
             }
 
             $orders = $orders->with('category', 'paymentStatus', 'shippmentStatus', 'district', 'village')->get();
-
-            // return $orders;
+            
         }
 
         $filters = $request->all();

@@ -66,7 +66,7 @@
                                         <label for="id_card">Nomor KK : <span class="text-danger">*</span></label>
                                         <input type="number" name="id_card" id="id_card"
                                             class="form-control @error('id_card') is-invalid @enderror"
-                                            placeholder="pisahkan dengan koma jika lebih dari satu!" aria-describedby="helpId"
+                                            placeholder="" aria-describedby="helpId"
                                             value="{{ old('id_card') }}">
                                         @error('id_card')
                                             <small id="helpId" class="text-danger">wajib diisi!</small>

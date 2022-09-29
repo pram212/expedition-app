@@ -5,7 +5,6 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Models\CRM\Order;
 use Yajra\DataTables\DataTables;
-use Illuminate\Http\Request;
 
 class DatatablesController extends Controller
 {
@@ -13,7 +12,7 @@ class DatatablesController extends Controller
     {
         $orders = Order::all();
 
-        
+
         return DataTables::of($orders)
                     ->addIndexColumn()
                     ->addColumn('action', function($orders) {

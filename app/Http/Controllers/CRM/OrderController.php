@@ -232,7 +232,7 @@ class OrderController extends Controller
 
         Order::onlyTrashed()->whereIn('id', $ids)->restore();
         
-        return back()->with('success', 'Data berhasil dihapus permdipulihkananen');
+        return back()->with('success', 'Data berhasil dihapus dipulihkan');
        
     }
 

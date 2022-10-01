@@ -34,6 +34,7 @@ class OrderRegisterController extends Controller
 
     public function createKtp()
     {
+        return abort(403);
         $districts = District::where('regency_id', 3276)->get();
         return view('crm.registration.create_ktp', compact('districts'));
     }

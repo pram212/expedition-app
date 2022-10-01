@@ -76,7 +76,7 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="{{url('/crm/order/trash')}}" class="nav-link  @if(request()->is('crm/trash')) active @endif">
+                    <a href="{{url('/crm/trash')}}" class="nav-link  @if(request()->is('crm/trash')) active @endif">
                         <i class="nav-icon fas fa-trash"></i>
                         <p>Sampah</p>
                     </a>

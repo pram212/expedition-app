@@ -57,7 +57,7 @@
                                         <input type="text" name="register_number" id="register_number"
                                             class="form-control" placeholder="Isi Nomor Pendaftaran"
                                             aria-describedby="helpId" value="{{ old('register_number') }}">
-                                        <small id="helpId" class="text-muted">isi dengan nomor pendaftaran dari
+                                        <small id="helpId" class="text-muted">Isi dengan nomor pendaftaran dari
                                             Disdukcapil!</small>
                                     </div>
                                 </div>
@@ -79,8 +79,9 @@
                                                 class="text-danger">*</span></label>
                                         <input type="text" name="customer_name" id="customer_name"
                                             class="form-control @error('customer_name') is-invalid @enderror"
-                                            placeholder="pisahkan dengan koma jika lebih dari satu" aria-describedby="helpId"
+                                            placeholder="" aria-describedby="helpId"
                                             value="{{ old('customer_name') }}">
+                                        <small id="helpId" class="text-muted">Pisahkan dengan koma jika lebih dari satu!</small>
                                         @error('customer_name')
                                             <small id="helpId" class="text-danger">wajib diisi!</small>
                                         @enderror
@@ -106,8 +107,8 @@
                                                 class="text-danger">*</span></label>
                                         <input type="tel" name="phone" id="phone"
                                             class="form-control @error('phone') is-invalid @enderror"
-                                            placeholder="isi nomor WA yang didaftarkan ke Disdukcapil" aria-describedby="helpId"
                                             value="{{ old('phone') }}">
+                                        <small class="text-muted">Isi nomor WA yang didaftarkan ke Disdukcapil</small>
                                         @error('phone')
                                             <small id="helpId" class="text-danger">wajib diisi!</small>
                                         @enderror
@@ -161,8 +162,8 @@
                                     <div class="form-group">
                                         <label for="address">Detil Alamat : <span
                                                 class="text-danger">*</span></label>
-                                        <textarea class="form-control @error('address') is-invalid @enderror" name="address" id="address" rows="3" placeholder="maksimal 65 karakter & jangan sertakan kelurahan / kecamatan" maxlength="65">{{ old('address') }}</textarea>
-                                        <small class="text-muted">contoh: Jl. 123, No. 5, Block A seberang Toko 123</small>
+                                        <textarea class="form-control @error('address') is-invalid @enderror" name="address" id="address" rows="3" placeholder="maksimal 65 karakter" maxlength="65">{{ old('address') }}</textarea>
+                                        <small class="text-muted">contoh: Jl. 123, No. 5, Block A seberang Toko 123 (jangan sertakan kelurahan/kecamatan/kota).</small>
                                         @error('address')
                                             <small id="helpId" class="text-danger">wajib diisi!</small>
                                         @enderror

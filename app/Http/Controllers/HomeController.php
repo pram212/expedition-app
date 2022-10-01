@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CRM\Order;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,6 +24,19 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $totalOrders = Order::count();
+
+        $tagihan = Order::where('payment_statuses_id', 1)
+                        ->where('shippment_statuses_id', '!=', 3)
+                        ->count();
+
+        $pemasukan = Order::where('payment_statuses_id', 2)
+                        ->where('shippment_statuses_id', '!=', 3)
+                        ->count();
+
+        $totaltagihan =  number_format( $tagihan * 20000 , 2, ',', '.');
+        $totalPemasukan =  number_format( $pemasukan * 20000 , 2, ',', '.');
+
+        return view('home', compact('totalOrders', 'totaltagihan', 'totalPemasukan'));
     }
 }

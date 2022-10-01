@@ -142,7 +142,8 @@
                                 <div class="col-sm-12 col-md-12">
                                     <div class="form-group">
                                         <label for="address">Detil Alamat : <span class="text-danger">*</span></label>
-                                        <textarea class="form-control @error('address') is-invalid @enderror" name="address" id="address" rows="3">{{ old('address') }}</textarea>
+                                        <textarea class="form-control @error('address') is-invalid @enderror" name="address" id="address" rows="3" placeholder="maksimal 65 karakter & jangan sertakan kelurahan / kecamatan">{{ old('address') }}</textarea>
+                                        <small class="text-muted">contoh: Jl. 123, No. 5, Block A seberang Toko 123</small>
                                         @error('address')
                                             <small id="helpId" class="text-danger">wajib diisi!</small>
                                         @enderror

@@ -60,7 +60,7 @@ class InvoiceController extends Controller
         
         $filters = $request->all();
 
-        return view('reporting.index_invoice', compact('orders', 'districts', 'categories', 'shipmentStatus', 'paymentStatus', 'orders', 'villages', 'filters'));
+        return view('crm.order.IndexOrder', compact('orders', 'districts', 'categories', 'shipmentStatus', 'paymentStatus', 'orders', 'villages', 'filters'));
     }
 
     public function printInvoice($id)

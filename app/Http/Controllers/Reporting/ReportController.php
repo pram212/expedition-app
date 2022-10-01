@@ -26,6 +26,7 @@ class ReportController extends Controller
         $paymentStatus = PaymentStatus::all();
         $shipmentStatus = ShippmentStatus::all();
 
+        $limit = 50;
 
         if (!$request->filter) {
            $orders = [];
@@ -54,9 +55,11 @@ class ReportController extends Controller
             if ($request->shippment_statuses_id) {
                 $orders = $orders->where('shippment_statuses_id', $request->shippment_statuses_id);
             }
+            if ($request->limit) {
+                $limit = $request->limit;
+            }
 
-            $orders = $orders->with('category', 'paymentStatus', 'shippmentStatus', 'district', 'village')->get();
-            
+            $orders = $orders->with('category', 'paymentStatus', 'shippmentStatus', 'district', 'village')->limit($limit)->get();
         }
 
         $filters = $request->all();

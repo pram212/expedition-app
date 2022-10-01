@@ -3,16 +3,23 @@
 namespace App\Http\Controllers\CRM;
 
 use App\Http\Controllers\Controller;
-use App\Models\Master\ShippmentStatus;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreOrderRequest;
 use App\Models\CRM\Order;
 use App\Models\District;
 use App\Models\Master\category;
 use App\Models\Master\PaymentStatus;
+use App\Models\Master\ShippmentStatus;
 use App\Models\Village;
 
-class ShipmentController extends Controller
+
+class TrashController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index(Request $request)
     {
         $districts = District::where('regency_id', 3276)->get();
@@ -57,7 +64,7 @@ class ShipmentController extends Controller
             $limit = $request->limit;
         }
 
-        $orders = $orders->where('payment_statuses_id', 2)
+        $orders = $orders->onlyTrashed()
                         ->with('category', 'paymentStatus', 'shippmentStatus', 'district', 'village')
                         ->paginate($limit)
                         ->withQueryString();
@@ -67,28 +74,94 @@ class ShipmentController extends Controller
         return view('crm.order.IndexOrder', compact('orders', 'districts', 'categories', 'shipmentStatus', 'paymentStatus', 'orders', 'villages', 'filters'));
     }
 
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
+    }
 
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        //
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function update(Request $request, $id)
     {
-        $order = Order::whereIn($request->id)->get();
-        return $order;
-        $order->shippment_statuses_id = $request->shippment_statuses_id;
-        
-        $order->save();
-        
-        return "Status pengiriman berhasil diubah";
+        //
     }
 
-    public function multiUpdate(Request $request)
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
     {
-        $ids = explode(",", $request->id);
-        // dd($ids);
-        Order::whereIn('id',$ids)->update([
-            'shippment_statuses_id' => $request->shippment_statuses_id,
-        ]);
-        
-        return back()->with('success', 'Status pengiriman berhasil diubah');
+        //
     }
 
-   
+    public function multiDestroy(Request $request)
+    {
+        $ids = explode(",", $request->ids_orders);
+        
+        $orders = Order::whereIn($ids)->get();
+
+        foreach ($orders as $order) {
+            $order->forceDelete();
+        }
+        
+        return back()->with('success', 'Data berhasil dihapus permanen');
+    }
+
+    public function multiRestore(Request $request)
+    {
+        $ids = explode(",", $request->ids_orders);
+
+        $orders = Order::whereIn($ids)->get();
+
+        foreach ($orders as $order) {
+            $order->restore();
+        }
+        return back()->with('success', 'Data berhasil dipulihkan');
+    }
 }

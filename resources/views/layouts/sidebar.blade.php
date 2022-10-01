@@ -17,7 +17,13 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{url('/crm/order')}}" class="nav-link  @if(request()->routeIs('crm.order.*')) active @endif">
+                    <a href="{{url('/crm/order')}}" class="nav-link  
+                        @if( request()->routeIs('crm.order.index') 
+                            || request()->routeIs('crm.order.create') 
+                            || request()->routeIs('crm.order.edit')  ) 
+                            active 
+                        @endif"
+                    >
                         <i class="nav-icon fas fa-users"></i>
                         <p>Konsumen</p>
                     </a>
@@ -68,6 +74,12 @@
                             </a>
                         </li>
                     </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="{{url('/crm/order/trash')}}" class="nav-link  @if(request()->is('crm/trash')) active @endif">
+                        <i class="nav-icon fas fa-trash"></i>
+                        <p>Sampah</p>
+                    </a>
                 </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link ">

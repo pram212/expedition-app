@@ -6,6 +6,7 @@ use App\Http\Controllers\CRM\OrderRegisterController;
 use App\Http\Controllers\CRM\PaymentController;
 use App\Http\Controllers\CRM\RegisterKtpController;
 use App\Http\Controllers\CRM\ShipmentController;
+use App\Http\Controllers\CRM\TrashController;
 use App\Http\Controllers\Reporting\InvoiceController;
 use App\Http\Controllers\Reporting\ReportController;
 use Illuminate\Support\Facades\Auth;
@@ -38,8 +39,13 @@ Auth::routes([
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::group(['prefix' => '/crm', 'as' => 'crm.', 'middleware' => 'auth'], function () {
+
     Route::resource('/order', OrderController::class );
-    Route::post('/order/delete/multiple', [OrderController::class, 'multiDestroy']);
+
+    Route::get('/trash', [OrderController::class, 'trash']);
+    Route::post('/trash/multidestroy', [OrderController::class, 'multiForceDelete']);
+    Route::post('/trash/multirestore', [OrderController::class, 'multiRestore']);
+    Route::post('/delete/multiple', [OrderController::class, 'multiDestroy']);
 
     Route::group(['prefix' => '/operation', 'as' => 'operation.'], function () {
         Route::resource('/payment', PaymentController::class );

@@ -106,7 +106,7 @@
                                                 class="text-danger">*</span></label>
                                         <input type="tel" name="phone" id="phone"
                                             class="form-control @error('phone') is-invalid @enderror"
-                                            placeholder="isi nomor whatsapp aktif" aria-describedby="helpId"
+                                            placeholder="isi nomor WA yang didaftarkan ke Disdukcapil" aria-describedby="helpId"
                                             value="{{ old('phone') }}">
                                         @error('phone')
                                             <small id="helpId" class="text-danger">wajib diisi!</small>

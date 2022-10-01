@@ -130,7 +130,7 @@ if (request()->is('crm/order')) {
                 </div>
             </form>
 
-            <form action="{{ url('/crm/order/delete/multiple') }}" method="POST" id="form-delete">
+            <form action="{{ url('/crm/delete/multiple') }}" method="POST" id="form-delete">
                 @csrf
                 <input type="hidden" name="ids_orders" class="ids_orders" id="ids_orders">
             </form>

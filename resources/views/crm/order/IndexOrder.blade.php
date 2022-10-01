@@ -201,7 +201,7 @@ if (request()->is('crm/order')) {
                         <th class="align-middle text-center">
                             Status Pembayaran
                         </th>
-                        <th class="align-middle text-center @if (request()->is('crm/operation/payment')) d-none @endif">
+                        <th class="align-middle text-center">
                             Status Pengiriman
                         </th>
                         <th class="align-middle text-center">Alamat</th>
@@ -220,11 +220,8 @@ if (request()->is('crm/order')) {
                             <td>{{ strtoupper($order->id_card) }}</td>
                             <td>{{ ucwords($order->customer_guardian) }}</td>
                             <td>{{ $order->phone }}</td>
-                            <td >
-                                {{ ucwords($order->paymentStatus->name) }}
-                            </td>
-                            <td class="@if (request()->is('crm/operation/payment')) d-none @endif">
-                                {{ ucwords($order->shippmentStatus->name) }}</td>
+                            <td>{{ ucwords($order->paymentStatus->name) }}</td>
+                            <td>{{ ucwords($order->shippmentStatus->name) }}</td>
                             <td>{{ $order->address }}</td>
                             <td>{{ strtoupper($order->village->name) }}</td>
                             <td>{{ strtoupper($order->district->name) }}</td>

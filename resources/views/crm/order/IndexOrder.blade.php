@@ -135,7 +135,7 @@ if (request()->is('crm/order')) {
                     <div class="col-sm-12 col-md-2">
                         <button class="btn m-1 btn-primary w-100 align-middle" type="submit" name="filter"
                             value="1">Tampilkan</button>
-                        <a href="{{ url('/crm/order') }}" class="btn w-100 m-1 btn-warning align-middle">Reset</a>
+                        <a href="{{ url()->current() }}" class="btn w-100 m-1 btn-warning align-middle">Reset</a>
                     </div>
                 </div>
             </form>

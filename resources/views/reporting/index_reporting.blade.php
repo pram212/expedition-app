@@ -32,7 +32,7 @@
                                             <i class="far fa-calendar-alt"></i>
                                         </span>
                                     </div>
-                                    <input type="text" name="created_at" value="{{ @$filters['created_at'] }}"
+                                    <input type="text" name="created_at" value="{{ request()->get('created_at') }}"
                                         class="form-control float-right" id="reservation">
                                 </div>
                             </div>
@@ -41,7 +41,7 @@
                                 <select class="select2 w-100 form-control" name="category_id" id="category_id">
                                     <option value="">Semua</option>
                                     @foreach ($categories as $item)
-                                        <option value="{{ $item->id }}" @if ($item->id == @$filters['category_id']) selected @endif>
+                                        <option value="{{ $item->id }}" @if ($item->id == request()->get('category_id')) selected @endif>
                                             {{ strtoupper($item->name) }}</option>
                                     @endforeach
                                 </select>
@@ -51,7 +51,7 @@
                                 <select class="select2 w-100 form-control" name="payment_statuses_id" id="payment_id">
                                     <option value="">Semua</option>
                                     @foreach ($paymentStatus as $item)
-                                        <option value="{{ $item->id }}" @if ($item->id == @$filters['payment_statuses_id']) selected @endif>
+                                        <option value="{{ $item->id }}" @if ($item->id == request()->get('payment_statuses_id')) selected @endif>
                                             {{ strtoupper($item->name) }}</option>
                                     @endforeach
                                 </select>
@@ -62,7 +62,7 @@
                                 <select class="select2 w-100 form-control" name="shippment_statuses_id" id="shipment_id">
                                     <option value="">Semua</option>
                                     @foreach ($shipmentStatus as $item)
-                                        <option value="{{ $item->id }}" @if ($item->id == @$filters['shippment_statuses_id']) selected @endif>
+                                        <option value="{{ $item->id }}" @if ($item->id == request()->get('shippment_statuses_id')) selected @endif>
                                             {{ strtoupper($item->name) }}</option>
                                     @endforeach
                                 </select>
@@ -72,7 +72,7 @@
                                 <select class="select2 w-100 form-control" name="village_id" id="village_id">
                                     <option value="">Semua</option>
                                     @foreach ($villages as $item)
-                                        <option value="{{ $item->id }}" @if ($item->id == @$filters['village_id']) selected @endif>
+                                        <option value="{{ $item->id }}" @if ($item->id == request()->get('village_id')) selected @endif>
                                             {{ strtoupper($item->name) }}</option>
                                     @endforeach
                                 </select>
@@ -82,20 +82,27 @@
                                 <select class="select2 w-100 form-control" name="district_id" id="district_id">
                                     <option value="">Semua</option>
                                     @foreach ($districts as $item)
-                                        <option value="{{ $item->id }}" @if ($item->id == @$filters['district_id']) selected @endif>
+                                        <option value="{{ $item->id }}" @if ($item->id == request()->get('district_id')) selected @endif>
                                             {{ strtoupper($item->name) }}</option>
                                     @endforeach
                                 </select>
                             </div>
                             <div class="col-md-4 col-sm-12 mb-2">
+                                <div class="form-group">
+                                    <label for="">No. WA</label>
+                                    <input type="text" autocomplete="off" value="{{ request()->get('phone') }}" name="phone" id="id_card"
+                                        class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-12 mb-2">
                                 <label for="limit">Limit :</label>
                                 <select class="select2 w-100 form-control" name="limit" id="limit">
-                                    <option value="10" @if (@$filters['limit'] == 10) selected @endif>10</option>
-                                    <option value="25" @if (@$filters['limit'] == 25) selected @endif>25</option>
-                                    <option value="50" @if (@$filters['limit'] == 50) selected @endif>50</option>
-                                    <option value="100" @if (@$filters['limit'] == 100) selected @endif>100</option>
-                                    <option value="200" @if (@$filters['limit'] == 200) selected @endif>200</option>
-                                    <option value="300" @if (@$filters['limit'] == 300) selected @endif>300</option>
+                                    <option value="10" @if (request()->get('limit') == 10) selected @endif>10</option>
+                                    <option value="25" @if (request()->get('limit') == 25) selected @endif>25</option>
+                                    <option value="50" @if (request()->get('limit') == 50) selected @endif>50</option>
+                                    <option value="100" @if (request()->get('limit') == 100) selected @endif>100</option>
+                                    <option value="200" @if (request()->get('limit') == 200) selected @endif>200</option>
+                                    <option value="300" @if (request()->get('limit') == 300) selected @endif>300</option>
                                 </select>
                             </div>
                         </div>

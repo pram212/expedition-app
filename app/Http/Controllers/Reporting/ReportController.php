@@ -43,6 +43,9 @@ class ReportController extends Controller
             if ($request->category_id) {
                 $orders = $orders->where('category_id', $request->category_id);
             }
+            if ($request->phone) {
+                $orders = $orders->where('phone', 'like', '%' . $request->phone . '%');
+            }
             if ($request->district_id) {
                 $orders = $orders->where('district_id', $request->district_id);
             }

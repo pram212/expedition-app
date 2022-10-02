@@ -22,7 +22,7 @@
 </head>
 
 @auth
-<body class="hold-transition layout-navbar-fixed sidebar-mini sidebar-collapse">
+<body class="hold-transition layout-fixed sidebar-mini sidebar-collapse">
     <div class="wrapper">
         <!-- Navbar -->
         @include('layouts.navbar')

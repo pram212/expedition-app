@@ -217,7 +217,11 @@ if (request()->is('crm/order')) {
                         <th class="align-middle text-center">Alamat</th>
                         <th class="align-middle text-center">Kelurahan</th>
                         <th class="align-middle text-center">Kecamatan</th>
+                        @if (request()->is('crm/trash'))
+                        <th class="align-middle text-center">Dihapus Pada</th>
+                        @else
                         <th class="align-middle text-center">Tanggal Daftar</th>
+                        @endif
                         <th class="align-middle text-center">Opsi</th>
                     </tr>
                 </thead>
@@ -235,7 +239,11 @@ if (request()->is('crm/order')) {
                             <td>{{ $order->address }}</td>
                             <td>{{ strtoupper($order->village->name) }}</td>
                             <td>{{ strtoupper($order->district->name) }}</td>
+                            @if (request()->is('crm/trash'))
+                            <td>{{ date('d/m/Y', strtotime($order->deleted_at)) }}</td>
+                            @else 
                             <td>{{ date('d/m/Y', strtotime($order->created_at)) }}</td>
+                            @endif
                             <td>
                                 @if (request()->is('crm/order'))
                                     <a href="{{ url("crm/order/$order->id/edit") }}" class="btn btn-info">Edit</a>

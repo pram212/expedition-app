@@ -18,13 +18,15 @@ $('#reservation').daterangepicker({
 })
 
 $('#reservation').on('apply.daterangepicker', function(ev, picker) {
-    $(this).val(picker.startDate.format('MM/DD/YYYY') + ' - ' + picker.endDate.format(
-        'MM/DD/YYYY'));
+    $(this).val(picker.startDate.format('DD/MM/YYYY') + ' - ' + picker.endDate.format(
+        'DD/MM/YYYY'));
 });
 
 $('#reservation').on('cancel.daterangepicker', function(ev, picker) {
     $(this).val('');
 });
+
+
 // DATE PICKER HANDLER END
 
 // DATATABLE HANDLER 

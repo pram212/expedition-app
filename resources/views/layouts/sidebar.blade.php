@@ -18,11 +18,7 @@
                 </li>
                 <li class="nav-item">
                     <a href="{{url('/crm/order')}}" class="nav-link  
-                        @if( request()->routeIs('crm.order.index') 
-                            || request()->routeIs('crm.order.create') 
-                            || request()->routeIs('crm.order.edit')  ) 
-                            active 
-                        @endif"
+                        @if( request()->routeIs('crm.order.*') ) active @endif"
                     >
                         <i class="nav-icon fas fa-users"></i>
                         <p>Konsumen</p>
@@ -30,7 +26,6 @@
                 </li>
                 <li class="nav-item @if(request()->routeIs('crm.operation.*')) menu-open @endif">
                     <a href="#" class="nav-link @if(request()->routeIs('crm.operation.*')) active @endif ">
-                        {{-- <i class="nav-icon fas fa-tachometer-alt"></i> --}}
                         <i class="nav-icon fa fa-check-square" aria-hidden="true"></i>
                         <p>
                             Operasional
@@ -81,7 +76,7 @@
                         <p>Sampah</p>
                     </a>
                 </li>
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a href="#" class="nav-link ">
                         <i class="nav-icon fa fa-database" aria-hidden="true"></i>
                         <p>
@@ -138,7 +133,7 @@
                             </a>
                         </li>
                     </ul>
-                </li>
+                </li> --}}
             </ul>
         </nav>
     </div>

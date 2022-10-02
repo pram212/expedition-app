@@ -11,6 +11,7 @@ use App\Models\Master\category;
 use App\Models\Master\PaymentStatus;
 use App\Models\Master\ShippmentStatus;
 use App\Models\Village;
+use Carbon\Carbon;
 
 class InvoiceController extends Controller
 {
@@ -26,8 +27,8 @@ class InvoiceController extends Controller
 
         if ($request->created_at) {
             $requestExplode = explode("-", str_replace(" ", "", $request->created_at ));
-            $startDate =  date("Y-m-d", strtotime($requestExplode[0]));
-            $endDate = date("Y-m-d", strtotime($requestExplode[1]));    
+            $startDate = Carbon::createFromFormat('d/m/Y', $requestExplode[0])->format('Y-m-d');
+            $endDate = Carbon::createFromFormat('d/m/Y', $requestExplode[1])->format('Y-m-d');
             $orders = $orders->whereDate('created_at', '>', $startDate)->whereDate('created_at', '<', $endDate);       
         }
 

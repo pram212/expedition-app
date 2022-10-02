@@ -10,6 +10,7 @@ use App\Models\Master\category;
 use App\Models\Master\PaymentStatus;
 use App\Models\Master\ShippmentStatus;
 use App\Models\Village;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 use function GuzzleHttp\Promise\all;
@@ -35,8 +36,8 @@ class OrderController extends Controller
 
         if ($request->created_at) {
             $requestExplode = explode("-", str_replace(" ", "", $request->created_at ));
-            $startDate =  date("Y-m-d", strtotime($requestExplode[0]));
-            $endDate = date("Y-m-d", strtotime($requestExplode[1]));    
+            $startDate = Carbon::createFromFormat('d/m/Y', $requestExplode[0])->format('Y-m-d');
+            $endDate = Carbon::createFromFormat('d/m/Y', $requestExplode[1])->format('Y-m-d');
             $orders = $orders->whereDate('created_at', '>', $startDate)->whereDate('created_at', '<', $endDate);       
         }
 
@@ -45,6 +46,9 @@ class OrderController extends Controller
         }
         if ($request->customer_name) {
             $orders = $orders->where('customer_name', 'like', '%' . $request->customer_name . '%');
+        }
+        if ($request->phone) {
+            $orders = $orders->where('phone', 'like', '%' . $request->phone . '%');
         }
         if ($request->id_card) {
             $orders = $orders->where('id_card', 'like', '%' . $request->id_card . '%');
@@ -70,6 +74,7 @@ class OrderController extends Controller
         $filters = $request->all();
 
         return view('crm.order.IndexOrder', compact('orders', 'districts', 'categories', 'shipmentStatus', 'paymentStatus', 'orders', 'villages', 'filters'));
+
     }
 
     /**

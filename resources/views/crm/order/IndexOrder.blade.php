@@ -300,7 +300,7 @@ if (request()->is('crm/order')) {
     <script src="{{ asset('adminlte/plugins/moment/moment.min.js') }}"></script>
     <script src="{{ asset('adminlte/plugins/inputmask/jquery.inputmask.min.js') }}"></script>
     <script src="{{ asset('adminlte/plugins/daterangepicker/daterangepicker.js') }}"></script>
-    <script src="{{ asset('js/filter_crm.js') }}"></script>
+    <script src="../../js/filter_crm.js"></script>
 
     <script>
         // $(document).ready(function () {

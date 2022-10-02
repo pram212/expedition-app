@@ -108,6 +108,7 @@
                         </div>
                     </div>
                     <div class="col-md-2 col-sm-12">
+                        
                         <button class="btn btn-primary w-100 mb-2" type="submit" name="filter" value="1">Tampilkan</button>
                         <a href="{{ url('reporting') }}" class="btn btn-warning w-100 mb-2">Reset</a>
                     </div>

@@ -38,7 +38,7 @@ class OrderController extends Controller
             $requestExplode = explode("-", str_replace(" ", "", $request->created_at ));
             $startDate = Carbon::createFromFormat('d/m/Y', $requestExplode[0])->format('Y-m-d');
             $endDate = Carbon::createFromFormat('d/m/Y', $requestExplode[1])->format('Y-m-d');
-            $orders = $orders->whereDate('created_at', '>', $startDate)->whereDate('created_at', '<', $endDate);       
+            $orders = $orders->whereDate('created_at', '>=', $startDate)->whereDate('created_at', '<=', $endDate);       
         }
 
         if ($request->category_id) {
@@ -70,10 +70,8 @@ class OrderController extends Controller
         }
 
         $orders = $orders->with('category', 'paymentStatus', 'shippmentStatus', 'district', 'village')->paginate($limit)->withQueryString();
-        
-        $filters = $request->all();
 
-        return view('crm.order.IndexOrder', compact('orders', 'districts', 'categories', 'shipmentStatus', 'paymentStatus', 'orders', 'villages', 'filters'));
+        return view('crm.order.IndexOrder', compact('orders', 'districts', 'categories', 'shipmentStatus', 'paymentStatus', 'orders', 'villages'));
 
     }
 

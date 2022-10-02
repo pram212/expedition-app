@@ -303,7 +303,6 @@ if (request()->is('crm/order')) {
     <script src="../../js/filter_crm.js"></script>
 
     <script>
-        // $(document).ready(function () {
         // DATATABLE HANDLER
         var table = $('#orders-table').DataTable({
             responsive: true,
@@ -550,7 +549,5 @@ if (request()->is('crm/order')) {
             }
         });
         // BUTTON HANDLER  END
-
-        // });
     </script>
 @endsection

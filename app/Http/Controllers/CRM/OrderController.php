@@ -69,7 +69,10 @@ class OrderController extends Controller
             $limit = $request->limit;
         }
 
-        $orders = $orders->with('category', 'paymentStatus', 'shippmentStatus', 'district', 'village')->paginate($limit)->withQueryString();
+        $orders = $orders->with('category', 'paymentStatus', 'shippmentStatus', 'district', 'village')
+                    ->orderByDesc('id')
+                    ->paginate($limit)
+                    ->withQueryString();
 
         return view('crm.order.IndexOrder', compact('orders', 'districts', 'categories', 'shipmentStatus', 'paymentStatus', 'orders', 'villages'));
 

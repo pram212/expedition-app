@@ -60,6 +60,7 @@ class ShipmentController extends Controller
 
         $orders = $orders->where('payment_statuses_id', 2)
                         ->with('category', 'paymentStatus', 'shippmentStatus', 'district', 'village')
+                        ->orderByDesc('id')
                         ->paginate($limit)
                         ->withQueryString();
         

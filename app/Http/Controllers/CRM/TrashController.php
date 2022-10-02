@@ -66,6 +66,7 @@ class TrashController extends Controller
 
         $orders = $orders->onlyTrashed()
                         ->with('category', 'paymentStatus', 'shippmentStatus', 'district', 'village')
+                        ->orderByDesc('id')
                         ->paginate($limit)
                         ->withQueryString();
 

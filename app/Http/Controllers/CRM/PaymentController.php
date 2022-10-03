@@ -39,6 +39,9 @@ class PaymentController extends Controller
         if ($request->customer_name) {
             $orders = $orders->where('customer_name', 'like', '%' . $request->customer_name . '%');
         }
+        if ($request->phone) {
+            $orders = $orders->where('phone', 'like', '%' . $request->phone . '%');
+        }
         if ($request->id_card) {
             $orders = $orders->where('id_card', 'like', '%' . $request->id_card . '%');
         }

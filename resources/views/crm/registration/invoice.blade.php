@@ -32,34 +32,11 @@
                     </div>
                     <div class="card-body">
                         <ul class="list-group">
-                            <li class="list-group-item">No. Rek : 3001201897</li>
+                            <li class="list-group-item">No. Rek : 856350994</li>
                             <li class="list-group-item">A/n : Koperasi Korpri Depok Bersahabat</li>
                         </ul>
                     </div>
                 </div>
-                <div class="card card-danger">
-                    <div class="card-header">
-                        BANK BJB
-                    </div>
-                    <div class="card-body">
-                        <ul class="list-group">
-                            <li class="list-group-item">No. Rek : 0085939742001</li>
-                            <li class="list-group-item">A/n : Koperasi Korpri Depok Bersahabat</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="card card-danger">
-                    <div class="card-header">
-                        BANK BTN
-                    </div>
-                    <div class="card-body">
-                        <ul class="list-group">
-                            <li class="list-group-item">No. Rek : 0018401500062093</li>
-                            <li class="list-group-item">A/n : Koperasi Korpri Depok Bersahabat</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
             <div class="card-footer">
                 <div class="alert alert-warning" role="alert">
                     Batas akhir pembayaran pukul 14.00 WIB.

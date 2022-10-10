@@ -41,6 +41,7 @@ class OrderRegisterController extends Controller
 
     public function createKia()
     {
+        return abort(403);
         $districts = District::where('regency_id', 3276)->get();
         return view('crm/registration/create_kia', compact('districts'));
     }

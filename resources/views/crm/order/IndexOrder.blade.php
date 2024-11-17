@@ -237,8 +237,8 @@ if (request()->is('crm/order')) {
                             <td>{{ ucwords($order->paymentStatus->name) }}</td>
                             <td>{{ ucwords($order->shippmentStatus->name) }}</td>
                             <td>{{ $order->address }}</td>
-                            <td>{{ strtoupper($order->village->name) }}</td>
-                            <td>{{ strtoupper($order->district->name) }}</td>
+                            <td>{{ strtoupper($order->village?->name) }}</td>
+                            <td>{{ strtoupper($order->district?->name) }}</td>
                             @if (request()->is('crm/trash'))
                             <td>{{ date('d/m/Y', strtotime($order->deleted_at)) }}</td>
                             @else 
